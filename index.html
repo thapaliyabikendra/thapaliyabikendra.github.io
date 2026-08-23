@@ -1,28 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Index Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bikendra Thapaliya — Senior Software Engineer / Technical Lead / Solution Architect</title>
+<meta name="description" content="Portfolio of Bikendra Thapaliya — Senior Software Engineer, Technical Lead and Solution Architect specialising in C#/.NET, event-driven architecture, and enterprise platforms for banking, telecom, healthcare and logistics." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0b1220;
+    --bg-elev: #111a2e;
+    --bg-elev-2: #16213a;
+    --line: rgba(231,236,245,0.09);
+    --line-strong: rgba(231,236,245,0.16);
+    --text: #e7ecf5;
+    --text-dim: #97a3bf;
+    --text-dimmer: #6b7793;
+    --amber: #f5a623;
+    --cyan: #4fd1c5;
+    --green: #34d399;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --maxw: 1120px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* subtle grid backdrop, like an observability dashboard canvas */
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 70%);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a{ color: inherit; }
+  ::selection{ background: var(--amber); color: #14100a; }
+
+  :focus-visible{
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dimmer);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before{ content:"//"; color: var(--cyan); opacity:0.8; }
+
+  /* ---------- nav ---------- */
+  nav{
+    position: sticky; top:0; z-index: 20;
+    background: rgba(11,18,32,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width: var(--maxw); margin:0 auto; padding: 16px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap: 16px;
+  }
+  .nav-name{
+    font-family: var(--mono); font-weight:600; font-size: 14px; letter-spacing: 0.02em;
+    display:flex; align-items:center; gap:9px; white-space:nowrap;
+  }
+  .status-dot{
+    width:7px;height:7px;border-radius:50%;
+    background: var(--green);
+    box-shadow: 0 0 0 0 rgba(52,211,153,0.6);
+    animation: pulse 2.2s infinite;
+    flex-shrink:0;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(52,211,153,0.55); }
+    70%{ box-shadow: 0 0 0 7px rgba(52,211,153,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(52,211,153,0); }
+  }
+  .nav-links{ display:flex; gap: 22px; font-size: 13.5px; }
+  .nav-links a{
+    text-decoration:none; color: var(--text-dim); font-weight:500;
+    padding: 6px 2px; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s;
+  }
+  .nav-links a:hover{ color: var(--text); border-color: var(--line-strong); }
+  .nav-cta{
+    font-family: var(--mono); font-size: 12.5px; text-decoration:none;
+    color: var(--bg); background: var(--cyan);
+    padding: 8px 14px; border-radius: 5px; font-weight:600; letter-spacing:0.02em;
+    white-space:nowrap; transition: filter .15s, transform .15s;
+  }
+  .nav-cta:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+  .nav-toggle{ display:none; }
+
+  @media (max-width: 720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+  header.hero{ padding: 84px 0 56px; }
+  .hero h1{
+    font-family: var(--mono);
+    font-size: clamp(30px, 5.4vw, 50px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 18px 0 10px;
+    font-weight: 600;
+  }
+  .hero .role{
+    font-size: clamp(16px, 2.4vw, 20px);
+    color: var(--text-dim);
+    margin: 0 0 30px;
+    max-width: 640px;
+  }
+  .hero .role strong{ color: var(--text); font-weight:600; }
+
+  .hero-actions{ display:flex; flex-wrap:wrap; gap: 12px; margin-bottom: 46px; }
+  .btn{
+    font-family: var(--mono); font-size: 13px; font-weight:600; letter-spacing:0.02em;
+    text-decoration:none; padding: 11px 18px; border-radius: 6px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition: transform .15s, filter .15s, background .15s, border-color .15s;
+  }
+  .btn-primary{ background: var(--amber); color: #1a1206; }
+  .btn-primary:hover{ filter: brightness(1.07); transform: translateY(-1px); }
+  .btn-ghost{ border: 1px solid var(--line-strong); color: var(--text); background: transparent; }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
+
+  /* signature: live signal ticker */
+  .ticker-wrap{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 0;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(90deg, var(--bg) 0%, transparent 4%, transparent 96%, var(--bg) 100%);
+  }
+  .ticker-wrap::before, .ticker-wrap::after{
+    content:""; position:absolute; top:0; bottom:0; width: 64px; z-index:2; pointer-events:none;
+  }
+  .ticker-wrap::before{ left:0; background: linear-gradient(90deg, var(--bg), transparent); }
+  .ticker-wrap::after{ right:0; background: linear-gradient(270deg, var(--bg), transparent); }
+  .ticker-track{
+    display:flex; gap: 14px; width: max-content;
+    animation: ticker 34s linear infinite;
+  }
+  .ticker-wrap:hover .ticker-track{ animation-play-state: paused; }
+  @keyframes ticker{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  .signal{
+    font-family: var(--mono); font-size: 12.5px; color: var(--text-dim);
+    background: var(--bg-elev); border: 1px solid var(--line);
+    padding: 7px 13px; border-radius: 999px; white-space:nowrap;
+    display:flex; align-items:center; gap:8px;
+  }
+  .signal b{ color: var(--text); font-weight:600; }
+  .signal .dot{ width:5px; height:5px; border-radius:50%; background: var(--amber); flex-shrink:0; }
+
+  /* ---------- section shell ---------- */
+  section{ padding: 76px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom: none; }
+  .section-head{ margin-bottom: 36px; max-width: 680px; }
+  .section-head h2{
+    font-family: var(--sans); font-size: clamp(22px, 3vw, 30px); font-weight:700;
+    margin: 10px 0 12px; letter-spacing: -0.01em;
+  }
+  .section-head p{ color: var(--text-dim); font-size: 15.5px; margin:0; }
+
+  /* ---------- about ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items:start; }
+  .about-grid p{ color: var(--text-dim); font-size: 15.5px; margin: 0 0 16px; }
+  .about-grid p strong{ color: var(--text); font-weight:600; }
+  .stat-list{ display:flex; flex-direction:column; gap: 0; border-top: 1px solid var(--line); }
+  .stat-item{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding: 16px 0; border-bottom: 1px solid var(--line);
+  }
+  .stat-item .num{ font-family: var(--mono); font-size: 22px; font-weight:600; color: var(--cyan); }
+  .stat-item .label{ font-size: 13px; color: var(--text-dim); text-align:right; max-width: 190px; }
+
+  @media (max-width: 860px){
+    .about-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- experience timeline ---------- */
+  .timeline{ position:relative; padding-left: 28px; }
+  .timeline::before{
+    content:""; position:absolute; left: 4px; top: 6px; bottom: 6px; width:1px;
+    background: var(--line-strong);
+  }
+  .tl-item{ position: relative; padding-bottom: 46px; }
+  .tl-item:last-child{ padding-bottom: 0; }
+  .tl-item::before{
+    content:""; position:absolute; left: -28px; top: 5px;
+    width: 9px; height:9px; border-radius:50%;
+    background: var(--bg); border: 2px solid var(--cyan);
+  }
+  .tl-item.current::before{ background: var(--green); border-color: var(--green); }
+  .tl-date{ font-family: var(--mono); font-size: 12px; color: var(--text-dimmer); letter-spacing:0.04em; }
+  .tl-role{ font-size: 18px; font-weight:700; margin: 6px 0 2px; }
+  .tl-org{ font-size: 14px; color: var(--cyan); margin: 0 0 12px; font-weight:500; }
+  .tl-item ul{ margin: 0; padding-left: 18px; color: var(--text-dim); font-size: 14.5px; }
+  .tl-item li{ margin-bottom: 7px; }
+  .tl-item li:last-child{ margin-bottom:0; }
+  .tl-item li strong{ color: var(--text); font-weight: 600; }
+
+  /* ---------- projects ---------- */
+  .project-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 780px){ .project-grid{ grid-template-columns: 1fr; } }
+
+  .card{
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    display:flex; flex-direction:column; gap: 12px;
+    transition: border-color .18s, transform .18s, background .18s;
+  }
+  .card:hover{ border-color: var(--line-strong); background: var(--bg-elev-2); transform: translateY(-2px); }
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap: 10px; }
+  .card-title{ font-size: 17px; font-weight:700; margin:0; }
+  .card-client{ font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); text-align:right; white-space:nowrap; }
+  .card p.desc{ color: var(--text-dim); font-size: 14px; margin:0; flex-grow:1; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap: 6px; }
+  .tag{
+    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px;
+  }
+  .card-metric{
+    font-family: var(--mono); font-size: 13px; font-weight:600; color: var(--amber);
+    border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .card-metric::before{ content:"▲"; font-size:9px; }
+
+  /* ---------- skills ---------- */
+  .skill-groups{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 26px 28px; }
+  @media (max-width: 860px){ .skill-groups{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px){ .skill-groups{ grid-template-columns: 1fr; } }
+  .skill-group h3{
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--cyan); margin: 0 0 12px; font-weight: 600;
+  }
+  .skill-group .tag-row{ gap: 7px; }
+  .skill-group .tag{ background: var(--bg-elev); }
+
+  /* ---------- education / certs / pubs ---------- */
+  .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+  @media (max-width: 780px){ .two-col{ grid-template-columns: 1fr; } }
+  .edu-item{ margin-bottom: 22px; }
+  .edu-item:last-child{ margin-bottom:0; }
+  .edu-item .tl-date{ display:block; margin-bottom:4px; }
+  .edu-item h4{ margin: 0 0 3px; font-size: 15.5px; }
+  .edu-item p{ margin:0; color: var(--text-dim); font-size: 13.5px; }
+
+  .pub-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .pub-list li{
+    border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px;
+    font-size: 14px; transition: border-color .15s;
+  }
+  .pub-list li:hover{ border-color: var(--cyan); }
+  .pub-list a{ text-decoration:none; color: var(--text); font-weight:600; }
+  .pub-list a:hover{ color: var(--cyan); }
+  .pub-list .src{ display:block; margin-top: 4px; color: var(--text-dimmer); font-family: var(--mono); font-size: 11.5px; }
+
+  .cert-line{ font-size: 14.5px; color: var(--text-dim); }
+  .cert-line strong{ color: var(--text); }
+
+  /* ---------- footer / contact ---------- */
+  footer{ padding: 70px 0 50px; }
+  .contact-box{
+    background: var(--bg-elev); border: 1px solid var(--line); border-radius: 12px;
+    padding: 40px; text-align:center;
+  }
+  .contact-box h2{ font-size: clamp(22px,3.4vw,30px); margin: 0 0 12px; }
+  .contact-box p{ color: var(--text-dim); max-width: 480px; margin: 0 auto 26px; font-size:15px; }
+  .contact-links{ display:flex; flex-wrap:wrap; justify-content:center; gap: 12px; }
+  .foot-meta{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    margin-top: 40px; font-family: var(--mono); font-size: 12px; color: var(--text-dimmer);
+  }
+  .foot-meta a{ color: var(--text-dimmer); text-decoration:none; }
+  .foot-meta a:hover{ color: var(--cyan); }
+</style>
 </head>
 <body>
-    <h1>Welcome to the Sample Index Page</h1>
-    <p>This is a basic HTML file that can serve as the index page for a website. It includes a simple structure with a title, heading, and paragraph.</p>
-    <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-    </ul>
-    <a href="https://example.com">Visit Example.com</a>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-name"><span class="status-dot" aria-hidden="true"></span> BIKENDRA THAPALIYA</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="./Bikendra_Thapaliya_CV.pdf">Download CV</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">system status — available for new roles</div>
+    <h1>Bikendra Thapaliya</h1>
+    <p class="role">
+      <strong>Senior Software Engineer / Technical Lead / Solution Architect</strong> —
+      6+ years designing and leading event-driven, microservices, and containerised
+      platforms in C#/.NET and Angular for banking, telecom, healthcare, and logistics.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">View selected work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="./Bikendra_Thapaliya_CV.pdf">Download CV (PDF)</a>
+    </div>
+  </div>
+
+  <div class="ticker-wrap" aria-label="Selected delivery metrics">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- items are duplicated via JS for seamless loop -->
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">profile</div>
+      <h2>Solution-oriented engineering leader</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          I architect, lead, and deliver enterprise software in <strong>C#/.NET and Angular</strong>
+          across banking, healthcare, telecom, and logistics. For the past two years I've worked as
+          a Technical Lead / Solution Architect, leading teams of 3–6 through the full lifecycle —
+          requirement analysis, HLD/LLD and ADRs, code review, mentoring, and production delivery.
+        </p>
+        <p>
+          My recent work centres on <strong>event-driven and streaming architectures</strong> — a
+          real-time fraud monitoring platform on Kafka, ksqlDB, and Flink; a configurable access-control
+          system onboarded by two banks; and a microservices warehouse-management transformation for a
+          multi-tenant logistics client. I'm currently designing a governed, AI-assisted SDLC workspace
+          to scale coding agents safely across engineering teams.
+        </p>
+        <p>
+          Based in Kathmandu, Nepal — open to remote work and international collaboration.
+        </p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-item"><span class="num">6+ yrs</span><span class="label">C#/.NET &amp; Angular delivery</span></div>
+        <div class="stat-item"><span class="num">2+ yrs</span><span class="label">Technical Lead / Solution Architect</span></div>
+        <div class="stat-item"><span class="num">3–6</span><span class="label">Engineers led per engagement</span></div>
+        <div class="stat-item"><span class="num">≥3×</span><span class="label">Sustained peer-baseline delivery throughput</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">experience.log</div>
+      <h2>Where I've built</h2>
+      <p>Chronological record of roles, in reverse order.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item current">
+        <div class="tl-date">JUL 2022 — PRESENT · KATHMANDU, NEPAL</div>
+        <div class="tl-role">Senior Software Engineer / Technical Lead / Solution Architect</div>
+        <div class="tl-org">AMNIL Technologies Pvt. Ltd.</div>
+        <ul>
+          <li>Lead architecture and delivery across banking, telecom, healthcare, logistics, and IoT engagements; translate ambiguous requirements into HLD/LLD and ADRs.</li>
+          <li>Lead and mentor teams of 3–6 through project lifecycles — design reviews, code reviews, technical decisions, risk escalation, stakeholder communication.</li>
+          <li>Main technical lead for a <strong>~23-month multi-project client portfolio</strong> (Dec 2023 – Nov 2025) spanning warehouse, hospitality, and healthcare IoT tracking solutions.</li>
+          <li>Delivered <strong>TransGuard</strong> (real-time fraud monitoring, two banks), <strong>ACMS</strong> (access control, two banks), <strong>Drop WMS v2</strong> (microservices warehouse management), and the <strong>Ncell</strong> recharge scheduler — detail under Selected Projects.</li>
+          <li>Recognized with the company-wide "Extreme Ownership" award; sustained ≥3× peer-baseline delivery throughput through analysis-first requirement engineering.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">MAR 2022 — JUN 2022 · KATHMANDU, NEPAL</div>
+        <div class="tl-role">Software Engineer</div>
+        <div class="tl-org">Info Developers Pvt. Ltd.</div>
+        <ul>
+          <li>Delivered features and bug fixes in a fast-paced team environment; direct exposure to client requirements and agile delivery under tight timelines.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">NOV 2020 — MAR 2022 · KATHMANDU, NEPAL</div>
+        <div class="tl-role">Software Engineer → Senior Software Engineer / Technical Lead</div>
+        <div class="tl-org">Uranus Tech Nepal Pvt. Ltd.</div>
+        <ul>
+          <li>Led modernisation of a desktop pension management system into a secure ASP.NET web application serving <strong>125,000+ pensioners</strong> across 3 processing camps.</li>
+          <li>Owned the full delivery loop end-to-end — requirements, spec, coding, testing, client demos, IIS deployment — while also acting as business analyst and product owner.</li>
+          <li>Built microfinance modules (cheque, budget, loans, savings, KYC) and an HRIS app; automated PowerShell deployments, cutting release cycles from hours to under 15 minutes.</li>
+          <li>Mentored junior developers from week two; progressed from intern to permanent within one week, and to senior/technical lead within a few months.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">selected projects</div>
+      <h2>Systems I've architected and shipped</h2>
+      <p>A sample of production platforms — each card lists the client context, stack, and the number that mattered most.</p>
+    </div>
+
+    <div class="project-grid">
+
+      <div class="card">
+        <div class="card-top">
+          <h3 class="card-title">TransGuard — Real-Time Fraud Monitoring</h3>
+          <span class="card-client">MBL Bank &amp; NMB Bank</span>
+        </div>
+        <p class="desc">Event-driven platform combining deterministic rules and per-customer behavioural profiling into one alert queue. Delivered pre-authorisation decisioning on the mobile channel and end-to-end mule-account detection, now live across both banks under maker-checker governance.</p>
+        <div class="tag-row">
+          <span class="tag">Kafka</span><span class="tag">ksqlDB</span><span class="tag">Flink</span><span class="tag">Druid</span><span class="tag">.NET</span><span class="tag">Angular</span><span class="tag">Kubernetes</span>
+        </div>
+        <div class="card-metric">~20M transactions/month, load-validated at 20,000 TPS</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3 class="card-title">ACMS — Access Control Management</h3>
+          <span class="card-client">MBL Bank &amp; NMB Bank</span>
+        </div>
+        <p class="desc">Configurable access-control and workflow-orchestration platform on ABP Framework with React admin/customer portals, OAuth2/OIDC security, and staged WorkflowCore approvals — a single reusable API layer onboarded by two banks.</p>
+        <div class="tag-row">
+          <span class="tag">ABP Framework</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">WorkflowCore</span><span class="tag">OAuth2/OIDC</span>
+        </div>
+        <div class="card-metric">~1,000 access cases/day</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3 class="card-title">Drop WMS v2 — Microservices WMS</h3>
+          <span class="card-client">St Luke's / Schenker / Applied Materials</span>
+        </div>
+        <p class="desc">Backend lead on a microservices warehouse-management transformation spanning Administration, Inbound, Outbound, EDI, and Notification services, with a multi-tenant rollout across three logistics sites.</p>
+        <div class="tag-row">
+          <span class="tag">.NET Core</span><span class="tag">ABP</span><span class="tag">RabbitMQ</span><span class="tag">gRPC</span><span class="tag">Docker</span>
+        </div>
+        <div class="card-metric">50K+ records migrated, zero data loss</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3 class="card-title">Ncell Automated Recharge Scheduler</h3>
+          <span class="card-client">Ncell Telecom</span>
+        </div>
+        <p class="desc">Led architecture and design of a WorkflowCore/Kafka-based scheduler for telecom recharges, including idempotent Redis-backed processing and an OAuth2-secured REST job API with a client integration guide.</p>
+        <div class="tag-row">
+          <span class="tag">WorkflowCore</span><span class="tag">Kafka</span><span class="tag">Redis</span><span class="tag">Polly</span>
+        </div>
+        <div class="card-metric">99.9% delivery reliability</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3 class="card-title">IoT Asset Tracking</h3>
+          <span class="card-client">Hospital &amp; Hospitality Clients</span>
+        </div>
+        <p class="desc">RFID-based real-time tracking using BSSID packet listening and RSSI-based nearest base-station resolution, with real-time alerts for floor changes and building exits.</p>
+        <div class="tag-row">
+          <span class="tag">RFID</span><span class="tag">Angular</span><span class="tag">MongoDB</span><span class="tag">RabbitMQ</span>
+        </div>
+        <div class="card-metric">~4,000 assets tracked, −25% loss in Q1</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3 class="card-title">Governed Agentic SDLC Workspace</h3>
+          <span class="card-client">Internal Initiative</span>
+        </div>
+        <p class="desc">Design → Plan → Develop → Review → Deploy → Monitor pipeline built around Claude Code, spec-driven development, and human-in-the-loop review gates — enabling parallel AI-assisted delivery without losing control.</p>
+        <div class="tag-row">
+          <span class="tag">Claude Code</span><span class="tag">Knowledge Base</span><span class="tag">Agentic Workflows</span>
+        </div>
+        <div class="card-metric">Parallel AI-assisted delivery, in progress</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">stack</div>
+      <h2>Tools &amp; capabilities</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Leadership</h3>
+        <div class="tag-row">
+          <span class="tag">Technical Leadership</span><span class="tag">Mentoring</span><span class="tag">Code Review</span><span class="tag">Delivery Ownership</span><span class="tag">Stakeholder Comms</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Architecture</h3>
+        <div class="tag-row">
+          <span class="tag">Solution Architecture</span><span class="tag">Microservices</span><span class="tag">Event-Driven Design</span><span class="tag">RESTful APIs</span><span class="tag">HLD/LLD · ADRs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Backend</h3>
+        <div class="tag-row">
+          <span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">.NET Framework</span><span class="tag">EF Core</span><span class="tag">ABP Framework</span><span class="tag">gRPC</span><span class="tag">SignalR</span><span class="tag">WorkflowCore</span><span class="tag">Hangfire</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <div class="tag-row">
+          <span class="tag">Angular</span><span class="tag">React</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Data &amp; Messaging</h3>
+        <div class="tag-row">
+          <span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span><span class="tag">Kafka</span><span class="tag">RabbitMQ</span><span class="tag">ksqlDB</span><span class="tag">Flink</span><span class="tag">Druid</span><span class="tag">Elasticsearch</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>DevOps &amp; Delivery</h3>
+        <div class="tag-row">
+          <span class="tag">Docker</span><span class="tag">Kubernetes/Helm</span><span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">CI/CD</span><span class="tag">Agile/Scrum</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">background</div>
+      <h2>Education, certifications &amp; writing</h2>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="edu-item">
+          <span class="tl-date">2015 – 2019</span>
+          <h4>Bachelor of Engineering (BE), Information Science and Engineering</h4>
+          <p>R R Institute of Technology, Bengaluru, India</p>
+        </div>
+        <div class="edu-item">
+          <span class="tl-date">2020 – 2021</span>
+          <h4>Data Science &amp; Machine Learning Training (self-directed)</h4>
+          <p>DataCamp — Python, Data Analysis, Machine Learning Fundamentals, Model Evaluation</p>
+        </div>
+        <div class="edu-item">
+          <span class="tl-date">Certifications</span>
+          <p class="cert-line">DataCamp — <strong>Data Analyst</strong>, <strong>Data Scientist</strong>, <strong>Machine Learning Scientist</strong>, <strong>Python Programmer</strong></p>
+        </div>
+      </div>
+      <div>
+        <ul class="pub-list">
+          <li>
+            <a href="https://www.linkedin.com/pulse/outcome-ownership-era-how-ai-turning-software-inside-out-thapaliya-5pjoc/" target="_blank" rel="noopener noreferrer">Outcome Ownership Era: How AI Is Turning Software Inside Out</a>
+            <span class="src">LinkedIn Pulse</span>
+          </li>
+          <li>
+            <a href="https://medium.com/@thapaliyabikendra/your-codebase-is-not-your-most-valuable-asset-your-knowledge-base-is-10ce9760ae73" target="_blank" rel="noopener noreferrer">Your Codebase Is Not Your Most Valuable Asset — Your Knowledge Base Is</a>
+            <span class="src">Medium</span>
+          </li>
+          <li>
+            <a href="https://medium.com/@thapaliyabikendra/agentic-development-workflow-how-to-go-from-raw-requirements-to-production-code-without-losing-3d663e35ed70" target="_blank" rel="noopener noreferrer">Agentic Development Workflow: From Raw Requirements to Production Code Without Losing Control</a>
+            <span class="src">Medium</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <div class="eyebrow" style="justify-content:center;">get in touch</div>
+      <h2>Let's build something reliable.</h2>
+      <p>Open to Technical Lead and Solution Architect roles, remote or Kathmandu-based. Reach out by email or phone, or download the full CV.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:thapaliyabikendra@gmail.com">thapaliyabikendra@gmail.com</a>
+        <a class="btn btn-ghost" href="tel:+9779804433993">+977 980-443-3993</a>
+        <a class="btn btn-ghost" href="https://medium.com/@thapaliyabikendra" target="_blank" rel="noopener noreferrer">Medium</a>
+        <a class="btn btn-ghost" href="./Bikendra_Thapaliya_CV.pdf">Download CV</a>
+      </div>
+    </div>
+
+    <div class="foot-meta">
+      <span>Kathmandu, Nepal (Remote OK)</span>
+      <span>&copy; <span id="year"></span> Bikendra Thapaliya</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Build the signal ticker from data, duplicated once for a seamless CSS loop.
+  var signals = [
+    { label: 'TransGuard', metric: '~20M tx/month · near real-time fraud detection' },
+    { label: 'ACMS', metric: '2 banks onboarded · ~1,000 cases/day' },
+    { label: 'Drop WMS v2', metric: '50K+ records migrated · zero data loss' },
+    { label: 'Ncell Scheduler', metric: '99.9% delivery reliability' },
+    { label: 'IoT Tracking', metric: '−25% equipment loss in Q1' },
+    { label: 'Leadership', metric: 'teams of 3–6 · 2+ years as Technical Lead' }
+  ];
+
+  var track = document.getElementById('tickerTrack');
+  function renderSignals(){
+    var frag = document.createDocumentFragment();
+    signals.concat(signals).forEach(function(s){
+      var el = document.createElement('span');
+      el.className = 'signal';
+      el.innerHTML = '<span class="dot" aria-hidden="true"></span><b>' + s.label + '</b> · ' + s.metric;
+      frag.appendChild(el);
+    });
+    track.appendChild(frag);
+  }
+  renderSignals();
+</script>
+
 </body>
 </html>
