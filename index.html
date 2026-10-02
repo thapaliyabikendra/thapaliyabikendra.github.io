@@ -5,322 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bikendra Thapaliya — Senior Software Engineer / Technical Lead / Solution Architect</title>
 <meta name="description" content="Portfolio of Bikendra Thapaliya — Senior Software Engineer, Technical Lead and Solution Architect specialising in C#/.NET, event-driven architecture, and enterprise platforms for banking, telecom, healthcare and logistics." />
+<meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#121416" media="(prefers-color-scheme: dark)" />
+<meta name="color-scheme" content="light dark" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Bikendra Thapaliya — Technical Lead / Solution Architect" />
+<meta property="og:description" content="Event-driven, microservices and containerised platforms in C#/.NET and Angular for banking, telecom, healthcare and logistics." />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b5d4b'/%3E%3Ctext x='16' y='22.5' font-size='16' font-weight='700' text-anchor='middle' font-family='Georgia,serif' fill='%23fff'%3EBT%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Bikendra Thapaliya","jobTitle":"Senior Software Engineer / Technical Lead / Solution Architect","email":"mailto:thapaliyabikendra@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Kathmandu","addressCountry":"NP"},"sameAs":["https://medium.com/@thapaliyabikendra"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #0b1220;
-    --bg-elev: #111a2e;
-    --bg-elev-2: #16213a;
-    --line: rgba(231,236,245,0.09);
-    --line-strong: rgba(231,236,245,0.16);
-    --text: #e7ecf5;
-    --text-dim: #97a3bf;
-    --text-dimmer: #6b7793;
-    --amber: #f5a623;
-    --cyan: #4fd1c5;
-    --green: #34d399;
-    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --maxw: 1120px;
+    --bg:#fcfcfb; --ink:#15181d; --muted:#596069; --rule:#d9dce0; --accent:#0b5d4b;
+    --serif:'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --sans:'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --maxw:1080px; --rail:200px; --gap:48px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121416; --ink:#ebebe8; --muted:#a3a8af; --rule:#2d3136; --accent:#6fd3b4; }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; }
+  [id]{ scroll-margin-top:72px; }
+  ::selection{ background:var(--accent); color:var(--bg); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  /* nav */
+  nav{ position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--rule); }
+  .nav-inner{ max-width:var(--maxw); margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-family:var(--sans); }
+  .nav-name{ font-family:var(--serif); font-weight:700; font-size:18px; white-space:nowrap; }
+  .nav-links{ display:flex; gap:26px; font-size:15px; }
+  .nav-links a{ text-decoration:none; color:var(--muted); padding:6px 0; border-bottom:2px solid transparent; }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a[aria-current="true"]{ color:var(--ink); border-color:var(--accent); }
+  .nav-cta{ font-size:15px; font-weight:600; color:var(--accent); white-space:nowrap; }
+  .nav-toggle{ display:none; font-family:var(--sans); font-size:15px; font-weight:600; color:var(--ink); background:none; border:1px solid var(--rule); border-radius:4px; padding:7px 14px; cursor:pointer; }
+  .skip-link{ position:absolute; left:12px; top:-60px; z-index:50; background:var(--ink); color:var(--bg); font-family:var(--sans); font-size:15px; font-weight:600; padding:10px 16px; border-radius:4px; text-decoration:none; }
+  .skip-link:focus{ top:12px; }
+  @media (max-width:720px){
+    .nav-toggle{ display:inline-block; }
+    .nav-cta{ display:none; }
+    .nav-links{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; padding:6px 28px 14px; background:var(--bg); border-bottom:1px solid var(--rule); }
+    .nav-links.open{ display:flex; }
+    .nav-links a{ padding:12px 0; font-size:17px; border-bottom:1px solid var(--rule); }
   }
 
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior: auto; }
-    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  /* hero */
+  header.hero{ padding:88px 0 72px; }
+  .hero h1{ font-size:clamp(44px,8vw,88px); line-height:1; letter-spacing:-0.025em; font-weight:600; margin:0 0 28px; }
+  .hero .role{ font-size:clamp(19px,2.3vw,23px); line-height:1.5; color:var(--muted); max-width:30em; margin:0 0 32px; }
+  .hero .role strong{ display:block; color:var(--ink); font-weight:600; margin-bottom:6px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; }
+  .avail{ font-family:var(--sans); font-size:15px; color:var(--muted); margin:22px 0 0; }
+  .btn{ font-family:var(--sans); font-size:16px; font-weight:600; text-decoration:none; }
+  .btn-primary{ display:inline-block; background:var(--ink); color:var(--bg); padding:12px 20px; border-radius:4px; }
+  .btn-primary:hover{ background:var(--accent); }
+  .btn-ghost{ border-bottom:1px solid var(--muted); padding-bottom:1px; }
+  .btn-ghost:hover{ color:var(--accent); border-color:var(--accent); }
+
+  /* sections: heading in a left rail, content to the right */
+  section{ padding:64px 0; border-top:1px solid var(--rule); }
+  section > .wrap{ display:grid; grid-template-columns:var(--rail) minmax(0,1fr); column-gap:var(--gap); align-items:start; }
+  .section-head{ position:sticky; top:84px; }
+  .section-head h2{ font-size:24px; font-weight:600; line-height:1.25; margin:0 0 8px; }
+  .section-head p{ font-family:var(--sans); font-size:14.5px; line-height:1.5; color:var(--muted); margin:0; }
+  @media (max-width:860px){
+    section > .wrap{ grid-template-columns:1fr; }
+    .section-head{ position:static; margin-bottom:28px; }
   }
 
-  body{
-    margin:0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+  /* about */
+  .about-grid p{ margin:0 0 1.1em; max-width:38em; }
+  .about-grid p strong{ font-weight:600; }
+  .stat-list{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 32px; margin-top:32px; max-width:38em; font-family:var(--sans); }
+  .stat-item{ display:flex; gap:14px; align-items:baseline; padding:12px 0; border-top:1px solid var(--rule); }
+  .stat-item .num{ font-weight:700; font-size:16px; min-width:56px; white-space:nowrap; }
+  .stat-item .label{ font-size:14.5px; color:var(--muted); }
+  @media (max-width:560px){ .stat-list{ grid-template-columns:1fr; } }
 
-  /* subtle grid backdrop, like an observability dashboard canvas */
-  body::before{
-    content:"";
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 70%);
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* experience */
+  .timeline{ display:flex; flex-direction:column; gap:44px; }
+  .tl-item{ display:grid; grid-template-columns:130px minmax(0,1fr); column-gap:24px; }
+  .tl-date{ grid-row:1 / span 3; font-family:var(--sans); font-size:14.5px; color:var(--muted); padding-top:4px; }
+  .tl-role, .tl-org, .tl-item ul{ grid-column:2; }
+  .tl-role{ font-size:20px; font-weight:600; line-height:1.3; margin:0; }
+  .tl-org{ font-family:var(--sans); font-size:15px; font-weight:600; color:var(--accent); margin:3px 0 12px; }
+  .tl-item ul{ margin:0; padding-left:1.1em; font-size:16.5px; }
+  .tl-item li{ margin-bottom:8px; }
+  .tl-item li strong{ font-weight:600; }
+  @media (max-width:600px){ .tl-item{ display:block; } .tl-date{ margin-bottom:4px; padding:0; } }
 
-  a{ color: inherit; }
-  ::selection{ background: var(--amber); color: #14100a; }
+  /* projects: a ruled list, outcome first */
+  .project-grid{ display:flex; flex-direction:column; }
+  .card{ display:grid; row-gap:10px; padding:28px 0; border-top:1px solid var(--rule); }
+  .card:first-child{ border-top:none; padding-top:0; }
+  .card-top{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 20px; }
+  .card-title{ font-size:20px; font-weight:600; line-height:1.3; margin:0; }
+  .card-client{ font-family:var(--sans); font-size:14.5px; color:var(--muted); }
+  .card-metric{ font-family:var(--sans); font-size:16px; font-weight:700; color:var(--accent); }
+  .card p.desc{ margin:0; font-size:16.5px; max-width:40em; }
 
-  :focus-visible{
-    outline: 2px solid var(--cyan);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
+  /* stacks and skills read as plain comma-separated text, not pills */
+  .tag-row{ font-family:var(--sans); font-size:14.5px; line-height:1.5; color:var(--muted); }
+  .tag{ white-space:nowrap; }
+  .tag:not(:last-child)::after{ content:", "; white-space:pre-wrap; }
+  .skill-group{ display:grid; grid-template-columns:150px minmax(0,1fr); column-gap:24px; padding:14px 0; border-top:1px solid var(--rule); }
+  .skill-group:first-child{ border-top:none; padding-top:0; }
+  .skill-group h3{ font-family:var(--sans); font-size:15px; font-weight:700; margin:0; }
+  .skill-group .tag-row{ font-size:16px; color:var(--ink); }
+  @media (max-width:600px){ .skill-group{ display:block; } .skill-group h3{ margin-bottom:4px; } }
 
-  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+  /* education + writing */
+  .two-col{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px; }
+  @media (max-width:860px){ .two-col{ grid-template-columns:1fr; } }
+  .col-title{ font-family:var(--sans); font-size:14px; font-weight:700; color:var(--muted); margin:0 0 16px; }
+  .edu-item{ margin-bottom:22px; }
+  .edu-item .tl-date{ display:block; margin-bottom:2px; padding:0; }
+  .edu-item h3{ margin:0 0 3px; font-size:17px; font-weight:600; line-height:1.35; }
+  .edu-item p{ margin:0; color:var(--muted); font-size:15.5px; }
+  .cert-line strong{ color:var(--ink); font-weight:600; }
+  .pub-list{ list-style:none; margin:0; padding:0; }
+  .pub-list li{ padding-bottom:18px; }
+  .pub-list a{ font-weight:600; text-decoration-color:var(--rule); text-underline-offset:3px; }
+  .pub-list a:hover{ color:var(--accent); text-decoration-color:currentColor; }
+  .pub-list .src{ display:block; font-family:var(--sans); font-size:14px; color:var(--muted); }
 
-  .eyebrow{
-    font-family: var(--mono);
-    font-size: 12.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-dimmer);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .eyebrow::before{ content:"//"; color: var(--cyan); opacity:0.8; }
+  /* contact */
+  footer{ padding:64px 0 48px; border-top:1px solid var(--rule); }
+  .contact-box, .foot-meta{ margin-left:calc(var(--rail) + var(--gap)); }
+  .contact-box h2{ font-size:24px; font-weight:600; margin:0 0 10px; }
+  .contact-box p{ max-width:34em; margin:0 0 22px; }
+  .contact-links{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; }
+  .foot-meta{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin-top:48px; font-family:var(--sans); font-size:14px; color:var(--muted); }
+  @media (max-width:860px){ .contact-box, .foot-meta{ margin-left:0; } }
 
-  /* ---------- nav ---------- */
-  nav{
-    position: sticky; top:0; z-index: 20;
-    background: rgba(11,18,32,0.82);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
+  @media print{
+    :root{ --bg:#fff; --ink:#000; --muted:#444; --rule:#ccc; --accent:#0b5d4b; }
+    nav, .hero-actions, .skip-link{ display:none !important; }
+    header.hero{ padding:24px 0; } section{ padding:22px 0; }
+    .card, .tl-item, .edu-item{ break-inside:avoid; }
   }
-  .nav-inner{
-    max-width: var(--maxw); margin:0 auto; padding: 16px 28px;
-    display:flex; align-items:center; justify-content:space-between; gap: 16px;
-  }
-  .nav-name{
-    font-family: var(--mono); font-weight:600; font-size: 14px; letter-spacing: 0.02em;
-    display:flex; align-items:center; gap:9px; white-space:nowrap;
-  }
-  .status-dot{
-    width:7px;height:7px;border-radius:50%;
-    background: var(--green);
-    box-shadow: 0 0 0 0 rgba(52,211,153,0.6);
-    animation: pulse 2.2s infinite;
-    flex-shrink:0;
-  }
-  @keyframes pulse{
-    0%{ box-shadow: 0 0 0 0 rgba(52,211,153,0.55); }
-    70%{ box-shadow: 0 0 0 7px rgba(52,211,153,0); }
-    100%{ box-shadow: 0 0 0 0 rgba(52,211,153,0); }
-  }
-  .nav-links{ display:flex; gap: 22px; font-size: 13.5px; }
-  .nav-links a{
-    text-decoration:none; color: var(--text-dim); font-weight:500;
-    padding: 6px 2px; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s;
-  }
-  .nav-links a:hover{ color: var(--text); border-color: var(--line-strong); }
-  .nav-cta{
-    font-family: var(--mono); font-size: 12.5px; text-decoration:none;
-    color: var(--bg); background: var(--cyan);
-    padding: 8px 14px; border-radius: 5px; font-weight:600; letter-spacing:0.02em;
-    white-space:nowrap; transition: filter .15s, transform .15s;
-  }
-  .nav-cta:hover{ filter: brightness(1.08); transform: translateY(-1px); }
-  .nav-toggle{ display:none; }
-
-  @media (max-width: 720px){
-    .nav-links{ display:none; }
-  }
-
-  /* ---------- hero ---------- */
-  header.hero{ padding: 84px 0 56px; }
-  .hero h1{
-    font-family: var(--mono);
-    font-size: clamp(30px, 5.4vw, 50px);
-    line-height: 1.12;
-    letter-spacing: -0.01em;
-    margin: 18px 0 10px;
-    font-weight: 600;
-  }
-  .hero .role{
-    font-size: clamp(16px, 2.4vw, 20px);
-    color: var(--text-dim);
-    margin: 0 0 30px;
-    max-width: 640px;
-  }
-  .hero .role strong{ color: var(--text); font-weight:600; }
-
-  .hero-actions{ display:flex; flex-wrap:wrap; gap: 12px; margin-bottom: 46px; }
-  .btn{
-    font-family: var(--mono); font-size: 13px; font-weight:600; letter-spacing:0.02em;
-    text-decoration:none; padding: 11px 18px; border-radius: 6px;
-    display:inline-flex; align-items:center; gap:8px;
-    transition: transform .15s, filter .15s, background .15s, border-color .15s;
-  }
-  .btn-primary{ background: var(--amber); color: #1a1206; }
-  .btn-primary:hover{ filter: brightness(1.07); transform: translateY(-1px); }
-  .btn-ghost{ border: 1px solid var(--line-strong); color: var(--text); background: transparent; }
-  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
-
-  /* signature: live signal ticker */
-  .ticker-wrap{
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 16px 0;
-    overflow: hidden;
-    position: relative;
-    background: linear-gradient(90deg, var(--bg) 0%, transparent 4%, transparent 96%, var(--bg) 100%);
-  }
-  .ticker-wrap::before, .ticker-wrap::after{
-    content:""; position:absolute; top:0; bottom:0; width: 64px; z-index:2; pointer-events:none;
-  }
-  .ticker-wrap::before{ left:0; background: linear-gradient(90deg, var(--bg), transparent); }
-  .ticker-wrap::after{ right:0; background: linear-gradient(270deg, var(--bg), transparent); }
-  .ticker-track{
-    display:flex; gap: 14px; width: max-content;
-    animation: ticker 34s linear infinite;
-  }
-  .ticker-wrap:hover .ticker-track{ animation-play-state: paused; }
-  @keyframes ticker{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(-50%); }
-  }
-  .signal{
-    font-family: var(--mono); font-size: 12.5px; color: var(--text-dim);
-    background: var(--bg-elev); border: 1px solid var(--line);
-    padding: 7px 13px; border-radius: 999px; white-space:nowrap;
-    display:flex; align-items:center; gap:8px;
-  }
-  .signal b{ color: var(--text); font-weight:600; }
-  .signal .dot{ width:5px; height:5px; border-radius:50%; background: var(--amber); flex-shrink:0; }
-
-  /* ---------- section shell ---------- */
-  section{ padding: 76px 0; border-bottom: 1px solid var(--line); }
-  section:last-of-type{ border-bottom: none; }
-  .section-head{ margin-bottom: 36px; max-width: 680px; }
-  .section-head h2{
-    font-family: var(--sans); font-size: clamp(22px, 3vw, 30px); font-weight:700;
-    margin: 10px 0 12px; letter-spacing: -0.01em;
-  }
-  .section-head p{ color: var(--text-dim); font-size: 15.5px; margin:0; }
-
-  /* ---------- about ---------- */
-  .about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items:start; }
-  .about-grid p{ color: var(--text-dim); font-size: 15.5px; margin: 0 0 16px; }
-  .about-grid p strong{ color: var(--text); font-weight:600; }
-  .stat-list{ display:flex; flex-direction:column; gap: 0; border-top: 1px solid var(--line); }
-  .stat-item{
-    display:flex; justify-content:space-between; align-items:baseline;
-    padding: 16px 0; border-bottom: 1px solid var(--line);
-  }
-  .stat-item .num{ font-family: var(--mono); font-size: 22px; font-weight:600; color: var(--cyan); }
-  .stat-item .label{ font-size: 13px; color: var(--text-dim); text-align:right; max-width: 190px; }
-
-  @media (max-width: 860px){
-    .about-grid{ grid-template-columns: 1fr; }
-  }
-
-  /* ---------- experience timeline ---------- */
-  .timeline{ position:relative; padding-left: 28px; }
-  .timeline::before{
-    content:""; position:absolute; left: 4px; top: 6px; bottom: 6px; width:1px;
-    background: var(--line-strong);
-  }
-  .tl-item{ position: relative; padding-bottom: 46px; }
-  .tl-item:last-child{ padding-bottom: 0; }
-  .tl-item::before{
-    content:""; position:absolute; left: -28px; top: 5px;
-    width: 9px; height:9px; border-radius:50%;
-    background: var(--bg); border: 2px solid var(--cyan);
-  }
-  .tl-item.current::before{ background: var(--green); border-color: var(--green); }
-  .tl-date{ font-family: var(--mono); font-size: 12px; color: var(--text-dimmer); letter-spacing:0.04em; }
-  .tl-role{ font-size: 18px; font-weight:700; margin: 6px 0 2px; }
-  .tl-org{ font-size: 14px; color: var(--cyan); margin: 0 0 12px; font-weight:500; }
-  .tl-item ul{ margin: 0; padding-left: 18px; color: var(--text-dim); font-size: 14.5px; }
-  .tl-item li{ margin-bottom: 7px; }
-  .tl-item li:last-child{ margin-bottom:0; }
-  .tl-item li strong{ color: var(--text); font-weight: 600; }
-
-  /* ---------- projects ---------- */
-  .project-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  @media (max-width: 780px){ .project-grid{ grid-template-columns: 1fr; } }
-
-  .card{
-    background: var(--bg-elev);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 24px;
-    display:flex; flex-direction:column; gap: 12px;
-    transition: border-color .18s, transform .18s, background .18s;
-  }
-  .card:hover{ border-color: var(--line-strong); background: var(--bg-elev-2); transform: translateY(-2px); }
-  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap: 10px; }
-  .card-title{ font-size: 17px; font-weight:700; margin:0; }
-  .card-client{ font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); text-align:right; white-space:nowrap; }
-  .card p.desc{ color: var(--text-dim); font-size: 14px; margin:0; flex-grow:1; }
-  .tag-row{ display:flex; flex-wrap:wrap; gap: 6px; }
-  .tag{
-    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
-    border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px;
-  }
-  .card-metric{
-    font-family: var(--mono); font-size: 13px; font-weight:600; color: var(--amber);
-    border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px;
-    display:flex; align-items:center; gap:7px;
-  }
-  .card-metric::before{ content:"▲"; font-size:9px; }
-
-  /* ---------- skills ---------- */
-  .skill-groups{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 26px 28px; }
-  @media (max-width: 860px){ .skill-groups{ grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 560px){ .skill-groups{ grid-template-columns: 1fr; } }
-  .skill-group h3{
-    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--cyan); margin: 0 0 12px; font-weight: 600;
-  }
-  .skill-group .tag-row{ gap: 7px; }
-  .skill-group .tag{ background: var(--bg-elev); }
-
-  /* ---------- education / certs / pubs ---------- */
-  .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 44px; }
-  @media (max-width: 780px){ .two-col{ grid-template-columns: 1fr; } }
-  .edu-item{ margin-bottom: 22px; }
-  .edu-item:last-child{ margin-bottom:0; }
-  .edu-item .tl-date{ display:block; margin-bottom:4px; }
-  .edu-item h4{ margin: 0 0 3px; font-size: 15.5px; }
-  .edu-item p{ margin:0; color: var(--text-dim); font-size: 13.5px; }
-
-  .pub-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
-  .pub-list li{
-    border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px;
-    font-size: 14px; transition: border-color .15s;
-  }
-  .pub-list li:hover{ border-color: var(--cyan); }
-  .pub-list a{ text-decoration:none; color: var(--text); font-weight:600; }
-  .pub-list a:hover{ color: var(--cyan); }
-  .pub-list .src{ display:block; margin-top: 4px; color: var(--text-dimmer); font-family: var(--mono); font-size: 11.5px; }
-
-  .cert-line{ font-size: 14.5px; color: var(--text-dim); }
-  .cert-line strong{ color: var(--text); }
-
-  /* ---------- footer / contact ---------- */
-  footer{ padding: 70px 0 50px; }
-  .contact-box{
-    background: var(--bg-elev); border: 1px solid var(--line); border-radius: 12px;
-    padding: 40px; text-align:center;
-  }
-  .contact-box h2{ font-size: clamp(22px,3.4vw,30px); margin: 0 0 12px; }
-  .contact-box p{ color: var(--text-dim); max-width: 480px; margin: 0 auto 26px; font-size:15px; }
-  .contact-links{ display:flex; flex-wrap:wrap; justify-content:center; gap: 12px; }
-  .foot-meta{
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
-    margin-top: 40px; font-family: var(--mono); font-size: 12px; color: var(--text-dimmer);
-  }
-  .foot-meta a{ color: var(--text-dimmer); text-decoration:none; }
-  .foot-meta a:hover{ color: var(--cyan); }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<nav>
+<nav aria-label="Primary">
   <div class="nav-inner">
-    <div class="nav-name"><span class="status-dot" aria-hidden="true"></span> BIKENDRA THAPALIYA</div>
-    <div class="nav-links">
+    <div class="nav-name">Bikendra Thapaliya</div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
@@ -333,10 +176,9 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">system status — available for new roles</div>
     <h1>Bikendra Thapaliya</h1>
     <p class="role">
-      <strong>Senior Software Engineer / Technical Lead / Solution Architect</strong> —
+      <strong>Senior Software Engineer / Technical Lead / Solution Architect</strong>
       6+ years designing and leading event-driven, microservices, and containerised
       platforms in C#/.NET and Angular for banking, telecom, healthcare, and logistics.
     </p>
@@ -345,20 +187,17 @@
       <a class="btn btn-ghost" href="#contact">Get in touch</a>
       <a class="btn btn-ghost" href="./Bikendra_Thapaliya_CV.pdf">Download CV (PDF)</a>
     </div>
+    <p class="avail">Currently open to new roles, remote or Kathmandu-based.</p>
   </div>
 
-  <div class="ticker-wrap" aria-label="Selected delivery metrics">
-    <div class="ticker-track" id="tickerTrack">
-      <!-- items are duplicated via JS for seamless loop -->
-    </div>
-  </div>
 </header>
+
+<main id="main">
 
 <section id="about">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">profile</div>
-      <h2>Solution-oriented engineering leader</h2>
+      <h2>About</h2>
     </div>
     <div class="about-grid">
       <div>
@@ -392,16 +231,14 @@
 <section id="experience">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">experience.log</div>
-      <h2>Where I've built</h2>
-      <p>Chronological record of roles, in reverse order.</p>
+      <h2>Experience</h2>
     </div>
 
     <div class="timeline">
       <div class="tl-item current">
-        <div class="tl-date">JUL 2022 — PRESENT · KATHMANDU, NEPAL</div>
+        <div class="tl-date">Jul 2022 – present</div>
         <div class="tl-role">Senior Software Engineer / Technical Lead / Solution Architect</div>
-        <div class="tl-org">AMNIL Technologies Pvt. Ltd.</div>
+        <div class="tl-org">AMNIL Technologies Pvt. Ltd., Kathmandu</div>
         <ul>
           <li>Lead architecture and delivery across banking, telecom, healthcare, logistics, and IoT engagements; translate ambiguous requirements into HLD/LLD and ADRs.</li>
           <li>Lead and mentor teams of 3–6 through project lifecycles — design reviews, code reviews, technical decisions, risk escalation, stakeholder communication.</li>
@@ -412,18 +249,18 @@
       </div>
 
       <div class="tl-item">
-        <div class="tl-date">MAR 2022 — JUN 2022 · KATHMANDU, NEPAL</div>
+        <div class="tl-date">Mar – Jun 2022</div>
         <div class="tl-role">Software Engineer</div>
-        <div class="tl-org">Info Developers Pvt. Ltd.</div>
+        <div class="tl-org">Info Developers Pvt. Ltd., Kathmandu</div>
         <ul>
           <li>Delivered features and bug fixes in a fast-paced team environment; direct exposure to client requirements and agile delivery under tight timelines.</li>
         </ul>
       </div>
 
       <div class="tl-item">
-        <div class="tl-date">NOV 2020 — MAR 2022 · KATHMANDU, NEPAL</div>
+        <div class="tl-date">Nov 2020 – Mar 2022</div>
         <div class="tl-role">Software Engineer → Senior Software Engineer / Technical Lead</div>
-        <div class="tl-org">Uranus Tech Nepal Pvt. Ltd.</div>
+        <div class="tl-org">Uranus Tech Nepal Pvt. Ltd., Kathmandu</div>
         <ul>
           <li>Led modernisation of a desktop pension management system into a secure ASP.NET web application serving <strong>125,000+ pensioners</strong> across 3 processing camps.</li>
           <li>Owned the full delivery loop end-to-end — requirements, spec, coding, testing, client demos, IIS deployment — while also acting as business analyst and product owner.</li>
@@ -438,9 +275,8 @@
 <section id="projects">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">selected projects</div>
-      <h2>Systems I've architected and shipped</h2>
-      <p>A sample of production platforms — each card lists the client context, stack, and the number that mattered most.</p>
+      <h2>Selected projects</h2>
+      <p>Production systems, each with its client and the number that mattered most.</p>
     </div>
 
     <div class="project-grid">
@@ -450,11 +286,11 @@
           <h3 class="card-title">TransGuard — Real-Time Fraud Monitoring</h3>
           <span class="card-client">MBL Bank &amp; NMB Bank</span>
         </div>
+        <div class="card-metric">~20M transactions/month, load-validated at 20,000 TPS</div>
         <p class="desc">Event-driven platform combining deterministic rules and per-customer behavioural profiling into one alert queue. Delivered pre-authorisation decisioning on the mobile channel and end-to-end mule-account detection, now live across both banks under maker-checker governance.</p>
         <div class="tag-row">
           <span class="tag">Kafka</span><span class="tag">ksqlDB</span><span class="tag">Flink</span><span class="tag">Druid</span><span class="tag">.NET</span><span class="tag">Angular</span><span class="tag">Kubernetes</span>
         </div>
-        <div class="card-metric">~20M transactions/month, load-validated at 20,000 TPS</div>
       </div>
 
       <div class="card">
@@ -462,11 +298,11 @@
           <h3 class="card-title">ACMS — Access Control Management</h3>
           <span class="card-client">MBL Bank &amp; NMB Bank</span>
         </div>
+        <div class="card-metric">~1,000 access cases/day</div>
         <p class="desc">Configurable access-control and workflow-orchestration platform on ABP Framework with React admin/customer portals, OAuth2/OIDC security, and staged WorkflowCore approvals — a single reusable API layer onboarded by two banks.</p>
         <div class="tag-row">
           <span class="tag">ABP Framework</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">WorkflowCore</span><span class="tag">OAuth2/OIDC</span>
         </div>
-        <div class="card-metric">~1,000 access cases/day</div>
       </div>
 
       <div class="card">
@@ -474,11 +310,11 @@
           <h3 class="card-title">Drop WMS v2 — Microservices WMS</h3>
           <span class="card-client">St Luke's / Schenker / Applied Materials</span>
         </div>
+        <div class="card-metric">50K+ records migrated, zero data loss</div>
         <p class="desc">Backend lead on a microservices warehouse-management transformation spanning Administration, Inbound, Outbound, EDI, and Notification services, with a multi-tenant rollout across three logistics sites.</p>
         <div class="tag-row">
           <span class="tag">.NET Core</span><span class="tag">ABP</span><span class="tag">RabbitMQ</span><span class="tag">gRPC</span><span class="tag">Docker</span>
         </div>
-        <div class="card-metric">50K+ records migrated, zero data loss</div>
       </div>
 
       <div class="card">
@@ -486,11 +322,11 @@
           <h3 class="card-title">Ncell Automated Recharge Scheduler</h3>
           <span class="card-client">Ncell Telecom</span>
         </div>
+        <div class="card-metric">99.9% delivery reliability</div>
         <p class="desc">Led architecture and design of a WorkflowCore/Kafka-based scheduler for telecom recharges, including idempotent Redis-backed processing and an OAuth2-secured REST job API with a client integration guide.</p>
         <div class="tag-row">
           <span class="tag">WorkflowCore</span><span class="tag">Kafka</span><span class="tag">Redis</span><span class="tag">Polly</span>
         </div>
-        <div class="card-metric">99.9% delivery reliability</div>
       </div>
 
       <div class="card">
@@ -498,11 +334,11 @@
           <h3 class="card-title">IoT Asset Tracking</h3>
           <span class="card-client">Hospital &amp; Hospitality Clients</span>
         </div>
+        <div class="card-metric">~4,000 assets tracked, −25% loss in Q1</div>
         <p class="desc">RFID-based real-time tracking using BSSID packet listening and RSSI-based nearest base-station resolution, with real-time alerts for floor changes and building exits.</p>
         <div class="tag-row">
           <span class="tag">RFID</span><span class="tag">Angular</span><span class="tag">MongoDB</span><span class="tag">RabbitMQ</span>
         </div>
-        <div class="card-metric">~4,000 assets tracked, −25% loss in Q1</div>
       </div>
 
       <div class="card">
@@ -510,11 +346,11 @@
           <h3 class="card-title">Governed Agentic SDLC Workspace</h3>
           <span class="card-client">Internal Initiative</span>
         </div>
+        <div class="card-metric">Parallel AI-assisted delivery, in progress</div>
         <p class="desc">Design → Plan → Develop → Review → Deploy → Monitor pipeline built around Claude Code, spec-driven development, and human-in-the-loop review gates — enabling parallel AI-assisted delivery without losing control.</p>
         <div class="tag-row">
           <span class="tag">Claude Code</span><span class="tag">Knowledge Base</span><span class="tag">Agentic Workflows</span>
         </div>
-        <div class="card-metric">Parallel AI-assisted delivery, in progress</div>
       </div>
 
     </div>
@@ -524,8 +360,7 @@
 <section id="skills">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">stack</div>
-      <h2>Tools &amp; capabilities</h2>
+      <h2>Skills</h2>
     </div>
     <div class="skill-groups">
       <div class="skill-group">
@@ -571,19 +406,19 @@
 <section id="education">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">background</div>
-      <h2>Education, certifications &amp; writing</h2>
+      <h2>Education and writing</h2>
     </div>
     <div class="two-col">
       <div>
+        <h3 class="col-title">Education &amp; certifications</h3>
         <div class="edu-item">
           <span class="tl-date">2015 – 2019</span>
-          <h4>Bachelor of Engineering (BE), Information Science and Engineering</h4>
+          <h3>Bachelor of Engineering (BE), Information Science and Engineering</h3>
           <p>R R Institute of Technology, Bengaluru, India</p>
         </div>
         <div class="edu-item">
           <span class="tl-date">2020 – 2021</span>
-          <h4>Data Science &amp; Machine Learning Training (self-directed)</h4>
+          <h3>Data Science &amp; Machine Learning Training (self-directed)</h3>
           <p>DataCamp — Python, Data Analysis, Machine Learning Fundamentals, Model Evaluation</p>
         </div>
         <div class="edu-item">
@@ -592,6 +427,7 @@
         </div>
       </div>
       <div>
+        <h3 class="col-title">Writing</h3>
         <ul class="pub-list">
           <li>
             <a href="https://www.linkedin.com/pulse/outcome-ownership-era-how-ai-turning-software-inside-out-thapaliya-5pjoc/" target="_blank" rel="noopener noreferrer">Outcome Ownership Era: How AI Is Turning Software Inside Out</a>
@@ -611,12 +447,13 @@
   </div>
 </section>
 
+</main>
+
 <footer id="contact">
   <div class="wrap">
     <div class="contact-box">
-      <div class="eyebrow" style="justify-content:center;">get in touch</div>
-      <h2>Let's build something reliable.</h2>
-      <p>Open to Technical Lead and Solution Architect roles, remote or Kathmandu-based. Reach out by email or phone, or download the full CV.</p>
+      <h2>Contact</h2>
+      <p>Open to Technical Lead and Solution Architect roles, remote or Kathmandu-based. Email is the quickest way to reach me.</p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:thapaliyabikendra@gmail.com">thapaliyabikendra@gmail.com</a>
         <a class="btn btn-ghost" href="tel:+9779804433993">+977 980-443-3993</a>
@@ -633,30 +470,37 @@
 </footer>
 
 <script>
+(function(){
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Build the signal ticker from data, duplicated once for a seamless CSS loop.
-  var signals = [
-    { label: 'TransGuard', metric: '~20M tx/month · near real-time fraud detection' },
-    { label: 'ACMS', metric: '2 banks onboarded · ~1,000 cases/day' },
-    { label: 'Drop WMS v2', metric: '50K+ records migrated · zero data loss' },
-    { label: 'Ncell Scheduler', metric: '99.9% delivery reliability' },
-    { label: 'IoT Tracking', metric: '−25% equipment loss in Q1' },
-    { label: 'Leadership', metric: 'teams of 3–6 · 2+ years as Technical Lead' }
-  ];
-
-  var track = document.getElementById('tickerTrack');
-  function renderSignals(){
-    var frag = document.createDocumentFragment();
-    signals.concat(signals).forEach(function(s){
-      var el = document.createElement('span');
-      el.className = 'signal';
-      el.innerHTML = '<span class="dot" aria-hidden="true"></span><b>' + s.label + '</b> · ' + s.metric;
-      frag.appendChild(el);
-    });
-    track.appendChild(frag);
+  // Mobile menu
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  function setMenu(open){
+    navLinks.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.textContent = open ? 'Close' : 'Menu';
   }
-  renderSignals();
+  navToggle.addEventListener('click', function(){ setMenu(!navLinks.classList.contains('open')); });
+  navLinks.addEventListener('click', function(e){ if (e.target.tagName === 'A') setMenu(false); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && navLinks.classList.contains('open')){ setMenu(false); navToggle.focus(); }
+  });
+
+  // Mark the section in view in the nav
+  var links = {};
+  navLinks.querySelectorAll('a').forEach(function(a){ links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        Object.keys(links).forEach(function(id){ links[id].removeAttribute('aria-current'); });
+        if (links[en.target.id]) links[en.target.id].setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(links).forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+})();
 </script>
 
 </body>
